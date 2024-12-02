@@ -73,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'erp_system.urls'
@@ -159,7 +160,13 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 DATABASE_ROUTERS = ('django_tenants.routers.TenantSyncRouter',)
 
 TENANT_MODEL = "Organization"  # Point to your Organization model
 TENANT_DOMAIN_MODEL = "TenantDomain"  # Create this model
+
+SITE_ID = 1
