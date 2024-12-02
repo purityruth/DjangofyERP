@@ -121,3 +121,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+DATABASE_ROUTERS = ('django_tenants.routers.TenantSyncRouter',)
+
+TENANT_MODEL = "Organization"  # Point to your Organization model
+TENANT_DOMAIN_MODEL = "TenantDomain"  # Create this model
